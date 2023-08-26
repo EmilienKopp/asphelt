@@ -13,9 +13,9 @@
         <p class="italic w-full">
             This is a demo component. The values here come from a svelte store that <strong>wasn't</strong> passed as a prop, but imported in the component.
         </p>
-        Content <small class="italic">(Try and edit it!)</small> : <input class="w-full hover:border-gray-300 rounded-md shadow" bind:value={$someStore.content} name="content" type="text"/>
+        <strong>Content</strong> <small class="italic">(Try and edit it!)</small> : <input class="w-full hover:border-gray-300 rounded-md shadow" bind:value={$someStore.content} name="content" type="text"/>
         <br/>
-        Number: {$someStore.number}
+        <strong>Number:</strong> {$someStore.number ?? "Not in store!"}
     {:else}
         {content}
     {/if}

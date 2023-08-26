@@ -61,16 +61,16 @@
     }
 
     const indicatorTextColors = {
-        primary: 'text-primary-500 dark:text-primary-900 hover:text-white',
-        secondary: 'text-secondary-500 dark:text-secondary-900 hover:text-white',
-        gray: 'text-gray-400 dark:text-gray-600 hover:text-white',
-        red: 'text-red-500 dark:text-red-900 hover:text-white',
-        yellow: 'text-yellow-400 dark:text-yellow-600 hover:text-white',
-        green: 'text-green-500 dark:text-green-900 hover:text-white',
-        indigo: 'text-indigo-500 dark:text-indigo-900 hover:text-white',
-        purple: 'text-purple-500 dark:text-purple-900 hover:text-white',
-        pink: 'text-pink-500 dark:text-pink-900 hover:text-white',
-        blue: 'text-blue-500 dark:text-blue-900 hover:text-white',
+        primary: 'text-primary-500 dark:text-primary-900 hover:text-gray-500 hover:animate-pulse',
+        secondary: 'text-secondary-500 dark:text-secondary-900 hover:text-gray-500 hover:animate-pulse',
+        gray: 'text-gray-400 dark:text-gray-600 hover:text-gray-500 hover:animate-pulse',
+        red: 'text-red-500 dark:text-red-900 hover:text-gray-500 hover:animate-pulse',
+        yellow: 'text-yellow-400 dark:text-yellow-600 hover:text-gray-500 hover:animate-pulse',
+        green: 'text-green-500 dark:text-green-900 hover:text-gray-500 hover:animate-pulse',
+        indigo: 'text-indigo-500 dark:text-indigo-900 hover:text-gray-500 hover:animate-pulse',
+        purple: 'text-purple-500 dark:text-purple-900 hover:text-gray-500 hover:animate-pulse',
+        pink: 'text-pink-500 dark:text-pink-900 hover:text-gray-500 hover:animate-pulse',
+        blue: 'text-blue-500 dark:text-blue-900 hover:text-gray-500 hover:animate-pulse',
         custom: customTextColor,
     }
 
@@ -168,17 +168,21 @@
             {/if}
         </div>
     
-        <div class="flex flex-col flex-grow items-center justify-around">
-            <div class="flex flex-row">
-                {#each steps as step,index}
-                    {#if index == currentStep - 1}
-                        <div class="flex-grow shadow-sm w-full p-8" out:fly={{x: 100, easing: quartOut}} in:fly={{x: -100, delay: 200, easing: quartIn}}>
-                            <svelte:component this={step.component} {...step.props} bind:data={$shared} {color}
-                                    on:edit={handleEdit} on:next={handleNext} on:previous={handlePrevious}/>
-                        </div>
+        <div class="flex-grow mx-12 items-center justify-around">
+            {#each steps as step,index}
+                {#if index == currentStep - 1}
+                    {#if step.component}
+                    <div class="shadow-lg p-8 border" out:fly={{x: 100, easing: quartOut}} in:fly={{x: -100, delay: 200, easing: quartIn}}>
+                        <svelte:component this={step.component} {...step.props} bind:data={$shared} {color}
+                                on:edit={handleEdit} on:next={handleNext} on:previous={handlePrevious}/>
+                    </div>
+                    {:else if step.text}
+                        <p>
+                            {step.text}
+                        </p>
                     {/if}
-                {/each}
-            </div>
+                {/if}
+            {/each}
         </div>
         
         
@@ -201,3 +205,9 @@
     </div>
 
 </svelte:element>
+
+<style>
+    .flex-fill {
+        flex: 1 1 auto;
+    }
+</style>

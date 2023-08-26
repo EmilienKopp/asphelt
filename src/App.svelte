@@ -6,6 +6,8 @@
     import WizardConfirm from "./WizardConfirm/WizardConfirm.svelte";
     import { Select } from "flowbite-svelte";
     import ComplexDemo from "./ComplexDemo/ComplexDemo.svelte";
+    import Typewriter from "./Typewriter/Typewriter.svelte";
+    import TypewriterJS from "./Typewriter/TypewriterJS.svelte";
 
 	let wizardData: any;
 	let color: 'primary' | 'secondary' | 'gray' | 'red' | 'yellow' | 'green' | 'indigo' | 'purple' | 'pink' | 'blue' | 'custom' = "primary";
@@ -42,6 +44,25 @@
 	<Wizard {steps} bind:shared={wizardData} {color} stepIndicator={type} action="/" />
 	
 	<JsonOutput object={$wizardData}/>
+
+	<Typewriter text={`
+	let interval = setInterval(() => {
+            caretVisible = !caretVisible;
+        }, 500);
+
+        for (let i = 0; i < text.length; i++) {
+            displayedText += text[i];
+            if (text[i + 1] === ' ' && text[i + 2] === ' ') {
+                caretVisible = false;
+            } else {
+                await new Promise(r => setTimeout(r, speed));
+            } 
+        }
+
+        caretVisible = false;
+        clearInterval(interval);`}/>
+
+
 </main>
 
 <style>

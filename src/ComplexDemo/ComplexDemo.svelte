@@ -1,5 +1,6 @@
 <script lang="ts">
-    import Code from "../Code/Code.svelte";
+    import { Spinner } from "flowbite-svelte";
+import Code from "../Code/Code.svelte";
     import { someStore } from "../store";
     
     export let title: string, description: string;
@@ -18,7 +19,21 @@
     <ul>
         {#each Object.entries($someStore) as [key, value]}
             <li>
-                {key}: <input name={key} placeholder={key} bind:value={$someStore[key]} />
+                {#if $someStore.fetching}
+                    {#await $someStore.fetching}
+                        <div class="w-full flex items-center justify-center">
+                            <Spinner/>
+                        </div>
+                    {/await}
+                {:else}
+                    {#if $someStore[key]?.length < 30}
+                        {key}: <input class="rounded-md shadow border" name={key} placeholder={key} bind:value={$someStore[key]} />
+                    {:else}
+                        <div class="my-2 flex flex-col">
+                            {key}: <textarea class="rounded-md border shadow" rows="5" name={key} placeholder={key} bind:value={$someStore[key]} />
+                        </div>
+                    {/if}
+                {/if}
             </li>
         {/each}
     </ul>
@@ -26,7 +41,7 @@
     <p>You can just store use the wizard to set a store, or post the data as a form...</p>
     <p>The only limit is <strong class="text-lg">your imagination</strong>!</p>
     <hr class="my-2"/>
-    Custom Action: <Code micro block>{action}</Code>
+    Custom Action <small>(just passed the function pointer to the <Code>Code</Code> component)</small>: <Code micro block>{action}</Code>
 </div>
 
 

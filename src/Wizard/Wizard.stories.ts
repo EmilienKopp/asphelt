@@ -1,5 +1,6 @@
 import ComplexDemo from '../ComplexDemo/ComplexDemo.svelte';
 import Demo from '../Demo/Demo.svelte';
+import Typewriter from '../Typewriter/Typewriter.svelte';
 import Wizard from './Wizard.svelte';
 import WizardInput from '../WizardInput/WizardInput.svelte';
 import Wrapper from '../Wrapper/Wrapper.svelte';
@@ -13,13 +14,14 @@ export default {
 };
 
 const mockAction: Function = async () => {
+
     if (!confirm( 'Launch Custom Action?' )) return;
-    let data;
-    someStore.subscribe((value) => {
-        data = value;
-    });
-    console.log(data);
-    await fetch('https://httpbin.org/post', {method: 'POST', body: JSON.stringify(data)})
+    someStore.set({ fetching: true})
+    let res = fetch('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single');
+    someStore.set({ fetching: res});
+    
+    let data = await res.then(res => res.json());
+    someStore.set({ joke: data.joke})
 }
 
 
@@ -31,12 +33,15 @@ export const emptyPrimary = {
         steps: [
             {
                 title: 'Step 1',
+                text: 'This is the first step. It has a text property.',
             },
             {
                 title: 'Step 2',
+                text: 'This is the second step. Text property again.',
             },
             {
                 title: 'Step 3',
+                text: 'This is the third step. Guess what ? It also a text property.',
             },
         ]
     }
@@ -58,20 +63,10 @@ export const emptyGreen = {
 
 export const dashed = {
     args: {
+        ...emptyPrimary.args,
         action: '/',
         opensNewTab: true,
         stepIndicator: 'dashed',
-        steps: [
-            {
-                title: 'Step 1',
-            },
-            {
-                title: 'Step 2',
-            },
-            {
-                title: 'Step 3',
-            },
-        ]
     }
 }
 
@@ -123,14 +118,17 @@ export const WithCustomComponents = {
         action: mockAction,
         steps: [
             {
-                title: 'Blank Demo',
+                title: 'Custom Component',
                 component: Demo,
             },
             {
                 title: 'Props!',
-                component: Demo,
+                component: Typewriter,
                 props: {
-                    content: 'The same component as earlier, but this content was passed through props!'
+                    text: `Another component. This time,the content was passed through step.props!`,
+                    componentInfo: {
+                        file: 'Typewriter.svelte',
+                    }
                 }
             },
             {
