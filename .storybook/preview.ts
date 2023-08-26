@@ -11,6 +11,11 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    previewTabs: {
+      'storybook/docs/panel': {
+        hidden: true,
+      },
+    },
   },
 };
 
