@@ -1,6 +1,7 @@
 
 export type Step = {
     title: string;
-    component: any;
+    component?: any;
+    text?: string;
     props?: any;
 }

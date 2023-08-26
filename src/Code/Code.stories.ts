@@ -37,7 +37,7 @@ export const Block = {
 export const MicroInline = {
     args: {
         micro: true,
-        data: 'const theAnswer = 42; // 42 is the answer to life, the universe, and everything'
+        data: `const theAnswer = 42; // 42 is the answer to life, the universe, and everything`
     }
 }
 
