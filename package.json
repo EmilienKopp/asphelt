@@ -1,0 +1,46 @@
+{
+  "name": "asphelt.io",
+  "private": false,
+  "version": "1.0.4",
+  "type": "module",
+  "module": "src/main.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.3.2",
+    "@storybook/addon-interactions": "^7.3.2",
+    "@storybook/addon-links": "^7.3.2",
+    "@storybook/addon-svelte-csf": "^3.0.9",
+    "@storybook/blocks": "^7.3.2",
+    "@storybook/svelte": "^7.3.2",
+    "@storybook/svelte-vite": "^7.3.2",
+    "@storybook/testing-library": "^0.2.0",
+    "@sveltejs/vite-plugin-svelte": "^2.4.2",
+    "@tsconfig/svelte": "^5.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.3.2",
+    "tslib": "^2.6.0",
+    "vite": "^4.4.5"
+  },
+  "peerDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-load-config": "^4.0.1",
+    "svelte": "^4.0.5",
+    "svelte-check": "^3.4.6",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "flowbite-svelte": "^0.44.4",
+    "prismjs": "^1.29.0",
+    "tailwind-merge": "^1.14.0"
+  }
+}
