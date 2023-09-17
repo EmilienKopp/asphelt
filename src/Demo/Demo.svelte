@@ -32,9 +32,8 @@
     </li>
 </ul>
 
-
 <style>
-    code {
-        @apply bg-gray-100 rounded-md p-1.5;
+    * {
+        color: var(--color-text);
     }
 </style>

@@ -18,7 +18,29 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
 @tailwind components;
 
 @tailwind utilities;
+
+body.light {
+  --color-text: rgb(17, 24, 39); 
+  --color-text-offset: rgb(75, 85, 99); 
+  --color-background: rgb(239, 241, 245);
+  --color-background-offset: rgb(235, 236, 240);
+  --color-border-offset: rgb(239, 241, 245, 0.5);
+  --color-border: rgb(17,24,39,0.1)
+}
+
+body.dark {
+  --color-text: rgb(249,250,251); 
+  --color-text-offset: rgb(156, 163, 175);
+  --color-background: rgb(17, 24, 39);
+  --color-background-reverse-offset: rgb(19, 26, 41);
+  --color-background-offset: rgb(12, 19, 34);
+  --color-border: rgb(249,250,251, 0.1)
+  --color-border-offset: rgb(249,250,251, 0.2);
+}
+
+* {
+  color: var(--color-text);
+}

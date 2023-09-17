@@ -7,7 +7,7 @@
     import { Select } from "flowbite-svelte";
     import ComplexDemo from "./ComplexDemo/ComplexDemo.svelte";
     import Typewriter from "./Typewriter/Typewriter.svelte";
-    import TypewriterJS from "./Typewriter/TypewriterJS.svelte";
+    import ShadowBox from "./ShadowBox/ShadowBox.svelte";
 
 	let wizardData: any;
 	let color: 'primary' | 'secondary' | 'gray' | 'red' | 'yellow' | 'green' | 'indigo' | 'purple' | 'pink' | 'blue' | 'custom' = "primary";
@@ -62,7 +62,9 @@
         caretVisible = false;
         clearInterval(interval);`}/>
 
-
+	<ShadowBox>
+		TEST
+	</ShadowBox>
 </main>
 
 <style>
